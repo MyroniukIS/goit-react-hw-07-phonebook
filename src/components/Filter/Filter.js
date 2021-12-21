@@ -1,9 +1,7 @@
 import styles from './Filter.module.css';
 import { PropTypes } from 'prop-types';
-import { useSelector } from 'react-redux';
 
-function Filter({ onFilterChange }) {
-  const filter = useSelector(state => state.contacts.filter);
+function Filter({ value, onFilterChange }) {
   return (
     <label className={styles.filter_label}>
       Find contacts by name:
@@ -11,7 +9,7 @@ function Filter({ onFilterChange }) {
         className={styles.filter_input}
         type="text"
         name="filter"
-        value={filter}
+        value={value}
         onChange={onFilterChange}
       />
     </label>
@@ -19,6 +17,7 @@ function Filter({ onFilterChange }) {
 }
 
 Filter.propTypes = {
+  value: PropTypes.string.isRequired,
   onFilterChange: PropTypes.func.isRequired,
 };
 

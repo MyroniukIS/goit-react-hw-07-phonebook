@@ -34,3 +34,7 @@
 .main_title_img {
   width: 100px;
 }
+.main_loader-container {
+  height: 100px;
+  padding: 10px;
+}

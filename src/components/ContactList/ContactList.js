@@ -1,22 +1,23 @@
 import styles from './ContactList.module.css';
 import { PropTypes } from 'prop-types';
 import { useDispatch } from 'react-redux';
-import actions from '../../redux/contacts/contacts-actions.js';
+
+import { delContact } from 'redux/contacts/contacts-operations';
 
 function ContactList({ items }) {
   const dispatch = useDispatch();
 
-  const contactsList = items.map(({ id, name, number }) => (
+  const contactsList = items.map(({ id, name, phone }) => (
     <li className={styles.item} key={id}>
       <div>
         <span className={styles.item_text}>
-          {name}: {number}
+          {name}: {phone}
         </span>
         <button
           className={styles.item_button}
           id={id}
           type="button"
-          onClick={() => dispatch(actions.contactsDelete(id))}
+          onClick={() => dispatch(delContact(id))}
         >
           Delete
         </button>
@@ -32,7 +33,7 @@ ContactList.propTypes = {
     PropTypes.shape({
       id: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
-      number: PropTypes.string.isRequired,
+      phone: PropTypes.string.isRequired,
     }).isRequired,
   ).isRequired,
 };

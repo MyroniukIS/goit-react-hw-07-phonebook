@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './App.css';
 import ContactForm from './components/ContactForm/ContactForm';
 import ContactList from './components/ContactList/ContactList';
@@ -6,19 +6,34 @@ import Filter from './components/Filter/Filter';
 import phonebook from './img/icon.png';
 import { useSelector, useDispatch } from 'react-redux';
 import actions from './redux/contacts/contacts-actions.js';
+import {
+  fetchContacts,
+  addContact,
+} from './redux/contacts/contacts-operations';
+import {
+  getFilter,
+  getContacts,
+  getLoading,
+} from './redux/contacts/contacts-selectors';
+import Loader from './components/Loader/Loader';
 
 export default function App() {
-  const items = useSelector(state => state.contacts.items);
-  const filter = useSelector(state => state.contacts.filter);
+  const items = useSelector(state => getContacts(state));
+  const filter = useSelector(state => getFilter(state));
+  const isLoading = useSelector(state => getLoading(state));
   const dispatch = useDispatch();
 
-  const addContact = (name, number) => {
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, []);
+
+  const addNewContact = (name, number) => {
     if (items.find(item => item.name === name)) {
       alert(`Inputed ${name} is already in the contacts`);
       return;
     }
 
-    return dispatch(actions.contactsAdd({ name, number }));
+    return dispatch(addContact({ name, number }));
   };
 
   const handleFilterContacts = e => {
@@ -36,10 +51,11 @@ export default function App() {
         <h1 className="main_title">Phonebook</h1>
       </div>
 
-      <ContactForm onSubmit={addContact} />
+      <ContactForm onSubmit={addNewContact} />
 
+      <div className="main_loader-container">{isLoading && <Loader />}</div>
       <h2 className="title">Contacts</h2>
-      <Filter onFilterChange={handleFilterContacts} />
+      <Filter value={filter} onFilterChange={handleFilterContacts} />
       <ContactList items={getFilteredContacts()} />
     </div>
   );
