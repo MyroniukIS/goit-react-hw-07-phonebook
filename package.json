@@ -1,8 +1,8 @@
 {
-  "name": "goit-react-hw-06-phonebook",
+  "name": "goit-react-hw-07-phonebook",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://myroniukis.github.io/goit-react-hw-06-phonebook",
+  "homepage": "https://myroniukis.github.io/goit-react-hw-07-phonebook",
   "dependencies": {
     "@reduxjs/toolkit": "^1.7.0",
     "@testing-library/jest-dom": "^5.14.1",
@@ -33,11 +33,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/MyroniukIS/goit-react-hw-06-phonebook.git"
+    "url": "git+https://github.com/MyroniukIS/goit-react-hw-07-phonebook.git"
   },
   "author": "MyroniukIS <knopkakyrs@gmail.com>",
   "bugs": {
-    "url": "https://github.com/MyroniukIS/goit-react-hw-06-phonebook/issues"
+    "url": "https://github.com/MyroniukIS/goit-react-hw-07-phonebook/issues"
   },
   "eslintConfig": {
     "extends": [
